@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggested Outfits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 200px;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="/">🏠 Home</a> | 
+        <a href="/swiper">⬅️ Back to Swiper</a> <!-- FIXED: Correctly navigates back -->
+    </div>
+
+    <h1>Recommended Outfits</h1>
+    <div class="container" id="recommendations"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let recommendedImages = JSON.parse(localStorage.getItem("recommendations")) || [];
+            let container = document.getElementById("recommendations");
+
+            recommendedImages.forEach((imageSrc) => {
+                let card = document.createElement("div");
+                card.className = "card";
+                card.style.backgroundImage = `url(${imageSrc})`;
+                container.appendChild(card);
+            });
+        });
+    </script>
+
+</body>
+</html>
